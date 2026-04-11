@@ -1,263 +1,853 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blind Matrix</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harish Ramasamy — Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #111118;
+      --surface2: #16161f;
+      --border: rgba(255,255,255,0.07);
+      --accent: #6c63ff;
+      --accent2: #ff6b6b;
+      --accent-glow: rgba(108, 99, 255, 0.25);
+      --text: #e8e8f0;
+      --text-muted: #6b6b80;
+      --text-dim: #9999b0;
+      --font-display: 'Syne', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.4;
+    }
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(20px);
+      background: rgba(10,10,15,0.8);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 7rem 2rem 4rem;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .hero-content {
+      max-width: 700px;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 0.9s ease forwards;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(108,99,255,0.1);
+      border: 1px solid rgba(108,99,255,0.2);
+      padding: 0.35rem 0.9rem;
+      border-radius: 100px;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-tag::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name .line2 {
+      color: transparent;
+      -webkit-text-stroke: 1.5px rgba(255,255,255,0.2);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      max-width: 520px;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 1.75rem;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 0 30px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: #7c75ff;
+      box-shadow: 0 0 40px rgba(108,99,255,0.45);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-dim);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
+    /* floating orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .orb1 { width: 400px; height: 400px; background: rgba(108,99,255,0.12); top: 10%; right: -100px; }
+    .orb2 { width: 250px; height: 250px; background: rgba(255,107,107,0.08); bottom: 20%; left: 30%; }
+
+    /* ─── SECTIONS COMMON ─── */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .section-sub {
+      color: var(--text-dim);
+      font-size: 1rem;
+      max-width: 520px;
+      margin-bottom: 3.5rem;
+      font-weight: 300;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--text-dim);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      font-size: 1.05rem;
+      line-height: 1.85;
+    }
+
+    .about-text p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .stat-card:hover { border-color: rgba(108,99,255,0.3); }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+
+    .stat-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .project-card.visible {
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .project-card:hover {
+      border-color: rgba(108,99,255,0.25);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .project-card:hover::before { opacity: 1; }
+
+    .project-icon {
+      width: 44px; height: 44px;
+      background: rgba(108,99,255,0.12);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.01em;
+    }
+
+    .project-desc {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.25rem 0.7rem;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+    }
+
+    /* ─── TECH STACK ─── */
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .stack-group {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.75rem;
+    }
+
+    .stack-group-title {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .stack-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .stack-item {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.4rem 0.9rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-dim);
+      transition: all 0.2s;
+    }
+
+    .stack-item:hover {
+      background: rgba(108,99,255,0.1);
+      border-color: rgba(108,99,255,0.3);
+      color: var(--text);
+    }
+
+    /* ─── CONTACT ─── */
+    #contactme {
+      padding: 6rem 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info p {
+      color: var(--text-dim);
+      font-size: 0.95rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--text); }
+
+    .contact-link-icon {
+      width: 36px; height: 36px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 0.85rem 1rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 300;
+      transition: border-color 0.2s;
+      outline: none;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: rgba(108,99,255,0.5);
+      box-shadow: 0 0 0 3px rgba(108,99,255,0.08);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-group textarea { min-height: 120px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+    }
+
+    footer span { color: var(--accent); }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { gap: 1.2rem; }
+      .nav-links a { font-size: 0.78rem; }
+      section, #contactme { padding: 4rem 1.25rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .stack-grid { grid-template-columns: 1fr; }
+      .contact-wrapper { grid-template-columns: 1fr; gap: 2.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-
 <body>
-    <div class="body-div">
-        <header class="d-flex justify-content-center">
-            <nav class="nav mt-3">
-                <ul class="d-flex nav-list">
-                    <li class="nav-list-item">
-                        <a href="#home" class="nav-link">Home</a>
-                    </li>
-                    <li class="nav-list-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-list-item">
-                        <a href="#projects" class="nav-link">Projects</a>
-                    </li>
-                    <li class="nav-list-item">
-                        <a href="#skills" class="nav-link">Tech Stack</a>
-                    </li>
-                    <li class="nav-list-item">
-                        <a href="#contactme" class="nav-link">Contact</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <main>
-            <div class="main-div">
-                <section id="home" class="hero-sec sections">
-                    <div class="hero-img">
-                        <img src="" alt="image">
-                    </div>
-                    <div class="hero-cont">
-                        <div class="content">
-                            <div class="left-parn">
-                                {
-                            </div>
-                            <div class="hero-par">
-                                <h2 class="content-head">Full Stack Developer crafting fast, scalable, and intuitive web
-                                    experiences.</h2>
-                            </div>
-                            <div class="right-parn">
-                                }
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="about" class="sections">
-                    <div class="sec-header">
-                        <h4>About</h4>
-                    </div>
-                    <div class="about-sec">
-                        <div class="about-rgt">
-                            <div class="abt-msg">
-                                <div class="about-para-div">
-                                    <div class="frt-line d-flex">
-                                        <p class="abt-para fadeup">
-                                        <p class="gld-clr abt-para fadeup">Full Stack Developer </p>
-                                        <P class="abt-para fadeup"> focused on building scalable and
-                                            user-friendly web applications.</P>
-                                        </p>
-                                    </div>
-                                    <div class="sec-line d-flex">
-                                        <p class="abt-para fadeup">Experienced in
-                                        <p class="abt-para gld-clr fadeup">Angular</p>
-                                        <p class="abt-para fadeup"> and modern frontend technologies. So backend
-                                            technologies too like</p>
-                                        <p class="m-0 gld-clr fadeup">Node.js</p>.</p>
-                                    </div>
-                                    <div class="trd-line d-flex fadeup">
-                                        <P>I enjoy solving real-world problems, improving code quality, and continuously
-                                            learning to
-                                            grow as a developer.</P>
-                                    </div>
-                                </div>
-                                <div class="abt-btn d-flex fadeup">
-                                    <button>Download Resume</button>
-                                    <button>Contact Me</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="about-lft">
-                            <div class="about-lft-content">
-                                <p class="fadeup">✔ 2+ Years Experience (if applicable)</p>
-                                <p class="fadeup">✔ Angular Specialist</p>
-                                <p class="fadeup">✔ Learning React & Backend</p>
-                                <p class="fadeup">✔ Clean Code Focus</p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="projects" class="sections">
-                    <div class="sec-header">
-                        <h4>Projects</h4>
-                    </div>
-                    <div class="project-sec fadeup">
-                        <div class="pro-data">
-                            <div class="pro-data-content fadeup">
-                                <h5>Time Tracker</h5>
-                                <p class="abt-para">using to track the daily activity and task</p>
-                                <div>
-                                    <h6>Tachnology</h6>
-                                    <ul class="pro-tech-list">
-                                        <li>
-                                            <p>Angular</p>
-                                        </li>
-                                        <li>
-                                            <p>Html</p>
-                                        </li>
-                                        <li>
-                                            <p>Css</p>
-                                        </li>
-                                        <li>
-                                            <p>Node js</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pro-data">
-                            <div class="pro-data-content fadeup">
-                                <h5>Job Portal</h5>
-                                <p class="abt-para">To login in the portal and apply for the jobs</p>
-                                <div>
-                                    <h6>Tachnology</h6>
-                                    <ul class="pro-tech-list">
-                                        <li>
-                                            <p>React</p>
-                                        </li>
-                                        <li>
-                                            <p>Html</p>
-                                        </li>
-                                        <li>
-                                            <p>Css</p>
-                                        </li>
-                                        <li>
-                                            <p>Node js</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pro-data">
-                            <div class="pro-data-content fadeup">
-                                <h5>Notification System</h5>
-                                <p class="abt-para">A desktop-based reminder system that notifies users to take breaks
-                                    and maintain productivity.</p>
-                                <div>
-                                    <h6>Tachnology</h6>
-                                    <ul class="pro-tech-list">
-                                        <li>
-                                            <p>JavaScript</p>
-                                        </li>
-                                        <li>
-                                            <p>Node js</p>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pro-data">
-                            <div class="pro-data-content fadeup">
-                                <h5>Web Sites</h5>
-                                <p class="abt-para">Web site for freelance cilents for their busness *confidencial*</p>
-                                <div>
-                                    <h6>Tachnology</h6>
-                                    <ul class="pro-tech-list">
-                                        <li>Html</li>
-                                        <li>Css</li>
-                                        <li>JavaScript</li>
-                                        <li>Git Hub</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="skills" class="sections">
-                    <div class="sec-header">
-                        <h4>Tech Stack</h4>
-                        <p>Technologies I use to build scalable and efficient applications.</p>
-                    </div>
-                    <div class="project-sec fadeup">
-                        <div class="pro-data">
-                            <div class="pro-data-content">
-                                <h5>🟢 Frontend</h5>
-                                <ul>
-                                    <li>
-                                        <p>Angular</p>
-                                    </li>
-                                    <li>
-                                        <p>React</p>
-                                    </li>
-                                    <li>
-                                        <p>TypeScript</p>
-                                    </li>
-                                    <li>
-                                        <p>JavaScript (ES6+)</p>
-                                    </li>
-                                    <li>
-                                        <p>HTML5</p>
-                                    </li>
-                                    <li>
-                                        <p>CSS3 / Tailwind CSS</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="pro-data">
-                            <div class="pro-data-content">
-                                <h5>🔵 Backend</h5>
-                                <ul>
-                                    <li>
-                                        <p>Node js</p>
-                                    </li>
-                                    <li>
-                                        <p>Express.js</p>
-                                    </li>
-                                    <li>
-                                        <p>My Sql</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="pro-data">
-                            <div class="pro-data-content">
-                                <h5>🟡 Tools & Others</h5>
-                                <ul>
-                                    <li>
-                                        <p>Git & GitHub</p>
-                                    </li>
-                                    <li>
-                                        <p>VS Code</p>
-                                    </li>
-                                    <li>
-                                        <p>Postman</p>
-                                    </li>
-                                    <li>
-                                        <p>PhpMyAdmin</p>
-                                    </li>
-                                    <li>
-                                        <p>Vibe Coding</p>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
-</body>
 
+  <!-- NAV -->
+  <nav>
+    <a href="#home" class="nav-logo">H<span>.</span>Ramasamy</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Stack</a></li>
+      <li><a href="#contactme">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <div id="home" style="position:relative;">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="hero-content">
+      <div class="hero-tag">Available for opportunities</div>
+      <h1 class="hero-name">
+        Harish<br>
+        <span class="line2">Ramasamy</span>
+      </h1>
+      <p class="hero-desc">
+        Frontend Developer specialising in Angular &amp; React — building fast, scalable, and production-ready web applications. 2+ years of hands-on enterprise experience.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View My Work →</a>
+        <a href="#contactme" class="btn btn-ghost">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About Me</p>
+    <h2 class="section-title">Crafting interfaces<br>that actually work.</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a <strong>Frontend Developer</strong> based in Chennai, specialising in Angular with enterprise-level experience across a 200+ component production codebase. I've worked with complex UI patterns using <strong>ng-select, ngx-bootstrap, Syncfusion</strong>, and custom i18n pipelines.
+        </p>
+        <p>
+          Expanding my stack into <strong>React, Node.js, and Express</strong> — actively building full-stack projects to achieve end-to-end independence.
+        </p>
+        <p>
+          I care about <strong>clean code, performance, and code quality</strong> — not just getting it to work, but getting it right.
+        </p>
+        <div style="margin-top:1.75rem">
+          <a href="#" class="btn btn-ghost" style="font-size:0.85rem;">Download Resume ↓</a>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-number">2+</div>
+          <div class="stat-label">Years professional experience</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">200+</div>
+          <div class="stat-label">Components in enterprise codebase</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Projects shipped</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">Curiosity for clean code</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Work</p>
+    <h2 class="section-title">Things I've built.</h2>
+    <p class="section-sub">A selection of personal and professional projects that reflect how I think and build.</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-icon">💼</div>
+        <div class="project-title">Job Portal</div>
+        <p class="project-desc">
+          A full job application platform where users can register, browse listings, and apply for roles. Built with React, a Node.js REST API backend, and styled with Tailwind CSS. Includes auth flow and dynamic job filtering.
+        </p>
+        <div class="project-tags">
+          <span class="tag">React</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Tailwind CSS</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">⏱️</div>
+        <div class="project-title">Time Tracker</div>
+        <p class="project-desc">
+          An Angular app to log and track daily tasks and activity durations. Helps developers and teams monitor productive hours with a clean, minimal interface and persistent data via Node.js backend.
+        </p>
+        <div class="project-tags">
+          <span class="tag">Angular</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🔔</div>
+        <div class="project-title">Notification System</div>
+        <p class="project-desc">
+          A desktop-based productivity tool that fires scheduled reminders to help users take breaks and stay focused. Built with pure JavaScript and Node.js — lightweight, no framework overhead.
+        </p>
+        <div class="project-tags">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Node.js</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-icon">🌐</div>
+        <div class="project-title">Freelance Web Projects</div>
+        <p class="project-desc">
+          Built and shipped production websites for real clients — including a South Asian wedding DJ service and a Chennai-based post-production studio. Full redesigns focused on visual identity, mobile responsiveness, and conversion.
+        </p>
+        <div class="project-tags">
+          <span class="tag">HTML</span>
+          <span class="tag">CSS</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">Client Work</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TECH STACK -->
+  <section id="skills">
+    <p class="section-label">Tech Stack</p>
+    <h2 class="section-title">What I work with.</h2>
+    <p class="section-sub">Technologies I use to build scalable, production-ready applications.</p>
+    <div class="stack-grid">
+      <div class="stack-group">
+        <div class="stack-group-title">🟢 Frontend</div>
+        <div class="stack-items">
+          <span class="stack-item">Angular</span>
+          <span class="stack-item">React</span>
+          <span class="stack-item">TypeScript</span>
+          <span class="stack-item">JavaScript ES6+</span>
+          <span class="stack-item">HTML5</span>
+          <span class="stack-item">CSS3</span>
+          <span class="stack-item">Tailwind CSS</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">🔵 Backend</div>
+        <div class="stack-items">
+          <span class="stack-item">Node.js</span>
+          <span class="stack-item">Express.js</span>
+          <span class="stack-item">MySQL</span>
+          <span class="stack-item">REST APIs</span>
+        </div>
+      </div>
+      <div class="stack-group">
+        <div class="stack-group-title">🟡 Tools</div>
+        <div class="stack-items">
+          <span class="stack-item">Git & GitHub</span>
+          <span class="stack-item">VS Code</span>
+          <span class="stack-item">Postman</span>
+          <span class="stack-item">PhpMyAdmin</span>
+          <span class="stack-item">Vercel</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contactme">
+    <p class="section-label">Contact</p>
+    <h2 class="section-title">Let's build something.</h2>
+    <p class="section-sub">Open to full-time roles, freelance work, and interesting collaborations.</p>
+
+    <div class="contact-wrapper">
+      <div class="contact-info">
+        <h3>Reach out directly</h3>
+        <p>Whether it's a job opportunity, a project, or just a conversation about code — my inbox is open.</p>
+        <div class="contact-links">
+          <a href="mailto:your@email.com" class="contact-link">
+            <div class="contact-link-icon">✉️</div>
+            your@email.com
+          </a>
+          <a href="https://github.com/Harish-ramasamy" target="_blank" class="contact-link">
+            <div class="contact-link-icon">🐙</div>
+            github.com/Harish-ramasamy
+          </a>
+          <a href="https://linkedin.com/in/your-profile" target="_blank" class="contact-link">
+            <div class="contact-link-icon">💼</div>
+            LinkedIn Profile
+          </a>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input id="name" type="text" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell me what you're building..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="align-self:flex-start;">Send Message →</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed & built by <span>Harish Ramasamy</span> — Chennai, India · 2025</p>
+  </footer>
+
+  <script>
+    // Scroll reveal for project cards
+    const cards = document.querySelectorAll('.project-card');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    cards.forEach(card => observer.observe(card));
+
+    // Contact form handler (replace with your backend/Formspree)
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      btn.textContent = 'Sent! ✓';
+      btn.style.background = '#22c55e';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Send Message →';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+  </script>
+
+</body>
 </html>
