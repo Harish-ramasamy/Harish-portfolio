@@ -1095,6 +1095,12 @@
     </div>
   </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("ZZSLuS4F78WM_Qat9");
+  })();
+</script>
   <script>
     /* ── HAMBURGER ── */
     const ham = document.getElementById('hamburger');
@@ -1135,19 +1141,34 @@
 
     /* ── CONTACT FORM ── */
     function handleSubmit(e) {
-      e.preventDefault();
-      const btn = document.getElementById('submitBtn');
+        e.preventDefault();
+
+  const btn = document.getElementById('submitBtn');
+  const form = e.target;
+
+  const data = {
+    name: form.name.value,
+    email: form.email.value,
+    message: form.message.value
+  };
+
+  emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", data)
+    .then(() => {
       btn.textContent = 'Sent! ✓';
       btn.style.background = '#22c55e';
-      btn.style.boxShadow = '0 8px 24px rgba(34,197,94,0.3)';
       btn.disabled = true;
+
       setTimeout(() => {
         btn.textContent = 'Send Message →';
         btn.style.background = '';
-        btn.style.boxShadow = '';
         btn.disabled = false;
-        e.target.reset();
-      }, 3500);
+        form.reset();
+      }, 3000);
+    })
+    .catch(() => {
+      btn.textContent = 'Error! Try again';
+      btn.style.background = 'red';
+    });
     }
   </script>
 
