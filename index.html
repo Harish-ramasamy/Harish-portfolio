@@ -1152,7 +1152,7 @@
     message: form.message.value
   };
 
-  emailjs.send("service_0oyp4lg", "__ejs-test-mail-service__", data)
+  emailjs.send("service_0oyp4lg", "template_zfmbz58", data)
     .then(() => {
       btn.textContent = 'Sent! ✓';
       btn.style.background = '#22c55e';
