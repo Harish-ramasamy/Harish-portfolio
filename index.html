@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harish Ramasamy — Full-Stack Software Engineer | Angular · React · Node.js</title>
+<meta name="description" content="Harish Ramasamy is a full-stack software engineer in Chennai building enterprise apps with Angular, React, Node.js, MySQL and MongoDB. Open to full-time roles and freelance work.">
+<meta name="keywords" content="Full Stack Developer Chennai, Angular Developer, React Developer, Node.js Developer, Hire Developer India">
+<meta name="author" content="Harish Ramasamy">
+<meta property="og:title" content="Harish Ramasamy — Full-Stack Software Engineer">
+<meta property="og:description" content="Angular, React & Node.js engineer in Chennai. Interface to database, end to end.">
+<meta property="og:image" content="https://harishramasamy.dev/asset/harish.jpg">
+<meta property="og:url" content="https://harishramasamy.dev">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#f0ebe1">
+<link rel="canonical" href="https://harishramasamy.dev">
+<link rel="preload" as="image" href="asset/harish.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Instrument+Serif:ital@1&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* colour: dominant cobalt · contrast orange · accent lime · neutrals paper/ink */
+  --paper:#f0ebe1;--paper2:#e4ddcf;--ink:#14130f;--mute:#6a665b;
+  --cobalt:#2a3cf5;--orange:#ff5b1f;--lime:#d4f23a;--portrait-bg:#cfdcff;
+  --display:'Bricolage Grotesque','Arial Black',Impact,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --mono:'DM Mono',ui-monospace,Menlo,monospace;
+  --s1:.5rem;--s2:1rem;--s3:2rem;--s4:4rem;--s5:8rem;
+  --pad:clamp(1.2rem,4vw,3.5rem);--r:4px;
+  --ease:cubic-bezier(.16,1,.3,1);--t-fast:.25s;--t:.6s;--t-slow:1s;
+  --shadow:8px 8px 0 var(--orange);
+}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{background:var(--paper);color:var(--ink);font:400 clamp(1rem,1.1vw,1.1rem)/1.6 var(--display);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--cobalt);color:var(--paper)}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.dk :focus-visible{outline-color:var(--lime)}
+.mono{font:500 .72rem/1.4 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.serif{font-family:var(--serif);font-style:italic;font-weight:400;letter-spacing:0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.skip{position:fixed;left:1rem;top:-4rem;background:var(--lime);padding:.6rem 1rem;z-index:2000;transition:top .2s}.skip:focus{top:1rem}
+
+/* ruler motif */
+.ruler{height:20px;background:
+ repeating-linear-gradient(90deg,currentColor 0 1px,transparent 1px 10px) 0 100%/100% 8px no-repeat,
+ repeating-linear-gradient(90deg,currentColor 0 1px,transparent 1px 50px) 0 100%/100% 18px no-repeat;opacity:.55}
+.reg{position:absolute;width:18px;height:18px;pointer-events:none}
+.reg::before,.reg::after{content:'';position:absolute;background:currentColor}
+.reg::before{left:8px;top:0;width:1px;height:18px}.reg::after{top:8px;left:0;height:1px;width:18px}
+
+/* header */
+.top{position:fixed;inset:0 0 auto 0;z-index:1000;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:1.1rem var(--pad);color:#fff;mix-blend-mode:difference}
+.logo{font:800 1.3rem var(--display);letter-spacing:-.04em;text-decoration:none}
+.sect{justify-self:center;opacity:.9}
+.mbtn{justify-self:end;background:none;border:1px solid currentColor;color:inherit;padding:.5rem 1.1rem;border-radius:99px;cursor:pointer}
+.mbtn:hover{background:#fff;color:#000}
+@media(max-width:700px){.sect{display:none}.top{grid-template-columns:1fr auto}}
+#menu{position:fixed;inset:0;z-index:900;background:var(--cobalt);color:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:6rem var(--pad) 3rem;clip-path:circle(0 at calc(100% - 3.5rem) 2.2rem);visibility:hidden;transition:clip-path .85s var(--ease),visibility 0s .85s}
+#menu.open{clip-path:circle(150% at calc(100% - 3.5rem) 2.2rem);visibility:visible;transition:clip-path .85s var(--ease),visibility 0s}
+#menu a.big{display:flex;gap:1.2rem;align-items:baseline;font:800 clamp(2.4rem,9vw,6.5rem)/1.05 var(--display);letter-spacing:-.04em;text-decoration:none;text-transform:uppercase;transform:translateY(40px);opacity:0;transition:transform .7s var(--ease),opacity .5s,color .2s}
+#menu.open a.big{transform:none;opacity:1;transition-delay:calc(.15s + var(--i)*.06s)}
+#menu a.big:hover,#menu a.big:focus-visible{color:var(--lime);transform:translateX(16px)}
+#menu a.big small{font:500 .75rem var(--mono);letter-spacing:.14em}
+#menu .mfoot{margin-top:2.5rem;display:flex;gap:2rem;flex-wrap:wrap}
+
+/* hero */
+#home{position:relative;min-height:100svh;padding:6.5rem var(--pad) 2rem;overflow:hidden;display:flex;flex-direction:column}
+.stage{--mx:0;--my:0;position:relative;flex:1;display:grid;max-width:1500px;width:100%;margin:0 auto;min-height:66svh}
+.stage>*{grid-area:1/1}
+.n{overflow:hidden;padding:.03em 0 .02em;font:800 clamp(3.6rem,15.5vw,16.5rem)/.8 var(--display);letter-spacing:-.05em;text-transform:uppercase;transition:transform .3s ease-out;pointer-events:none;z-index:1}
+.n span{display:block;animation:up 1.1s var(--ease) both}
+.n1{align-self:start;justify-self:start;transform:translateX(calc(var(--mx)*28px))}
+.n1 span{animation-delay:.1s}
+.n2{align-self:end;justify-self:end;z-index:3;color:var(--cobalt);transform:translateX(calc(var(--mx)*-28px))}
+.n2 span{animation-delay:.3s}
+@keyframes up{from{transform:translateY(105%)}}
+.portrait{justify-self:center;align-self:center;z-index:2;width:min(34vw,470px);aspect-ratio:4/5;position:relative;margin-left:clamp(0px,18vw,300px);transition:transform .3s ease-out;animation:wipe 1.1s var(--ease) .2s both}
+@keyframes wipe{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0)}}
+.frame{position:absolute;inset:0;overflow:hidden;background:var(--portrait-bg);border:2px solid var(--ink);box-shadow:var(--shadow)}
+.frame img{width:100%;height:100%;object-fit:cover;object-position:52% 30%;transform:translate(calc(var(--mx)*-14px),calc(var(--my)*-10px)) scale(1.35);transform-origin:52% 38%;transition:transform .3s ease-out}
+.portrait.gum .frame{animation:gum 1.3s var(--ease)}
+@keyframes gum{30%{transform:scaleX(1.5)}55%{transform:scaleX(.92)}}
+.stamp{position:absolute;left:50%;top:50%;translate:-50% -50%;rotate:-8deg;background:var(--lime);border:2px solid var(--ink);padding:.4rem 1rem;font:800 1.2rem var(--display);white-space:nowrap;opacity:0;pointer-events:none;z-index:6}
+.portrait.gum .stamp{animation:pop 1.3s .1s}
+@keyframes pop{15%,80%{opacity:1;scale:1.1}}
+.pin{position:absolute;left:var(--x);top:var(--y);z-index:5;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:0;background:none;cursor:pointer}
+.pin i{position:absolute;inset:9px;border-radius:50%;background:var(--orange);border:2px solid var(--paper)}
+.pin::after{content:'';position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--orange);animation:ping 2.2s infinite}
+@keyframes ping{to{transform:scale(1.8);opacity:0}}
+.pin span{position:absolute;left:50%;top:calc(100% + 6px);translate:-50% 6px;background:var(--ink);color:var(--paper);padding:.55rem .8rem;white-space:nowrap;font:700 .85rem/1.3 var(--display);opacity:0;pointer-events:none;transition:.25s var(--ease);text-align:left}
+.pin span small{display:block;font:400 .66rem var(--mono);letter-spacing:.08em;color:var(--lime);margin-top:.15rem}
+.pin:hover span,.pin:focus-visible span,.pin.open span{opacity:1;translate:-50% 0}
+.fig{position:absolute;z-index:4;font:500 .66rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);animation:fade 1s 1.1s both}
+.fig.a{left:0;bottom:calc(50% - 250px);display:none}
+@keyframes fade{from{opacity:0}}
+.hfoot{max-width:1500px;width:100%;margin:2rem auto 0;display:grid;grid-template-columns:1.4fr 1fr auto;gap:2rem;align-items:end;animation:fade 1s 1.2s both}
+.hfoot p{font-size:clamp(1.05rem,1.6vw,1.45rem);line-height:1.35;max-width:36ch;font-weight:500}
+.hfoot p em{font:italic 400 1.15em var(--serif);color:var(--cobalt)}
+.kick{color:var(--mute)}
+.acts{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:.6rem;padding:.9rem 1.5rem;border:2px solid var(--ink);background:var(--ink);color:var(--paper);font:700 .9rem var(--display);text-decoration:none;cursor:pointer;transition:background .25s,color .25s,transform .25s var(--ease);will-change:transform}
+.btn:hover{background:var(--orange);border-color:var(--ink);color:var(--ink)}
+.btn.ghost{background:transparent;color:var(--ink)}.btn.ghost:hover{background:var(--lime)}
+.hint{display:flex;gap:.6rem;align-items:center;color:var(--mute)}
+.hint i{width:8px;height:8px;border-radius:50%;background:var(--orange);animation:ping2 1.6s infinite}
+@keyframes ping2{50%{transform:scale(.5)}}
+@media(max-width:900px){
+ .stage{min-height:auto}
+ .n{font-size:19vw}
+ .portrait{width:70vw;margin:14vw 0;margin-left:0}
+ .hfoot{grid-template-columns:1fr;gap:1.2rem}
+ .n1{justify-self:start}.n2{justify-self:end}
+}
+
+/* marquee */
+.mq{background:var(--orange);color:var(--ink);border-block:2px solid var(--ink);overflow:hidden;padding:.9rem 0;rotate:-1.2deg;margin:2rem -2vw}
+.mq div{display:flex;gap:2.5rem;width:max-content;animation:mq 30s linear infinite;font:800 clamp(1.2rem,2.4vw,2rem) var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.mq:hover div{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.wrap{max-width:1500px;margin:0 auto;padding:var(--s5) var(--pad)}
+.lbl{display:flex;gap:.8rem;align-items:center;color:var(--mute);margin-bottom:var(--s3)}
+.lbl b{color:var(--orange);font-weight:500}
+.rv{opacity:1}
+.js .rv{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.js .rv.left{transform:translateX(-60px)}.js .rv.right{transform:translateX(60px)}
+.js .rv.clip{transform:none;clip-path:inset(0 100% 0 0);opacity:1;transition:clip-path 1.1s var(--ease)}
+.js .rv.in{opacity:1;transform:none;clip-path:inset(0)}
+
+/* about */
+.about{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--s3) 1.5rem}
+.about .lead{grid-column:1/10;font:700 clamp(1.7rem,4.4vw,4rem)/1.12 var(--display);letter-spacing:-.03em}
+.js .w{opacity:.16;transition:opacity .35s}.js .w.on{opacity:1}
+.lead .w.k{color:var(--cobalt);font:italic 400 1.1em var(--serif)}
+.eyes{grid-column:7/13;position:relative;aspect-ratio:16/5;border:2px solid var(--ink);background:url(asset/harish.jpg) 53% 34.5%/300% auto var(--portrait-bg);rotate:2deg;margin-top:1rem}
+.eyes::before{content:'';position:absolute;left:-14px;top:-12px;width:90px;height:26px;background:var(--orange);rotate:-8deg;opacity:.9}
+.eyes figcaption{position:absolute;left:0;bottom:-2rem;color:var(--mute)}
+.facts{grid-column:1/6;margin-top:2rem}
+.facts dl{display:grid;grid-template-columns:auto 1fr;gap:.9rem 1.5rem;border-top:2px solid var(--ink);padding-top:1.2rem}
+.facts dt{color:var(--mute);padding-top:.25rem}
+.facts dd{font-weight:500}
+.facts .acts{margin-top:1.8rem}
+@media(max-width:900px){.about .lead,.eyes,.facts{grid-column:1/-1}.eyes{margin-bottom:2rem}}
+
+/* work */
+.work h2,.cap h2,.jr h2,.ct h2{font:800 clamp(2.6rem,9vw,8.5rem)/.9 var(--display);letter-spacing:-.05em;text-transform:uppercase}
+.work h2 span{color:var(--cobalt)}
+.list{margin-top:var(--s4);border-top:2px solid var(--ink)}
+.row{border-bottom:2px solid var(--ink)}
+.rh{position:relative;isolation:isolate;display:grid;grid-template-columns:3.5rem 1fr auto 3rem;gap:1rem;align-items:center;width:100%;padding:1.6rem .8rem;background:none;border:0;color:var(--ink);font:inherit;text-align:left;cursor:pointer;transition:color .3s,padding .5s var(--ease)}
+.rh::before{content:'';position:absolute;inset:0;z-index:-1;background:var(--cobalt);transform:scaleY(0);transform-origin:bottom;transition:transform .5s var(--ease)}
+.rh:hover,.row.open .rh{color:var(--paper);padding-left:1.8rem}
+.rh:hover::before,.row.open .rh::before{transform:scaleY(1)}
+.rh .ttl{font:800 clamp(1.6rem,4.6vw,4rem)/1 var(--display);letter-spacing:-.04em}
+.rh .ttl small{display:block;font:400 clamp(.85rem,1.1vw,1rem)/1.4 var(--display);letter-spacing:0;margin-top:.5rem;opacity:.75}
+.rh .yr{font-style:italic}
+.rh .pl{font:400 2rem/1 var(--mono);transition:transform .5s var(--ease)}
+.row.open .pl{transform:rotate(45deg);color:var(--lime)}
+.rp{display:grid;grid-template-rows:0fr;transition:grid-template-rows .7s var(--ease)}
+.row.open .rp{grid-template-rows:1fr}
+.rp>div{overflow:hidden;visibility:hidden;transition:visibility 0s .7s}
+.row.open .rp>div{visibility:visible;transition-delay:0s}
+.case{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding:2.2rem .8rem 2.8rem;background:var(--paper2)}
+.case h4{color:var(--orange);margin-bottom:.6rem}
+.case p{font-size:.98rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tags span{font:500 .68rem var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border:1.5px solid var(--ink)}
+.case a{display:inline-block;margin-top:1rem;font-weight:700}
+.case a:hover{color:var(--cobalt)}
+@media(max-width:900px){.case{grid-template-columns:1fr 1fr}.rh{grid-template-columns:2.4rem 1fr 2rem}.rh .yr{display:none}}
+@media(max-width:560px){.case{grid-template-columns:1fr}}
+
+/* capabilities */
+.dk{background:var(--ink);color:var(--paper)}
+.cap .lbl{color:#a9a597}
+.map{position:relative;margin-top:var(--s4);aspect-ratio:2/1;min-height:360px}
+.map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.ln{stroke:#5b584d;stroke-width:1.5;fill:none;vector-effect:non-scaling-stroke;transition:stroke .3s}
+.ln.dash{stroke-dasharray:3 6}
+.ln.act{stroke:var(--lime);stroke-width:2.5;stroke-dasharray:8 8;animation:dash 1s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-16}}
+.nd{position:absolute;left:var(--x);top:var(--y);translate:-50% -50%;padding:1rem 1.6rem;border:2px solid var(--paper);background:var(--ink);color:var(--paper);font:800 clamp(1rem,2.2vw,1.8rem) var(--display);letter-spacing:-.03em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s,scale .35s var(--ease)}
+.nd small{display:block;font:400 .62rem var(--mono);letter-spacing:.14em;opacity:.7}
+.nd:hover,.nd.act{background:var(--lime);color:var(--ink);border-color:var(--lime);scale:1.08}
+.nd.core{background:var(--orange);color:var(--ink);border-color:var(--orange);cursor:default}
+.panel{margin-top:var(--s3);display:grid;grid-template-columns:1fr 1.2fr;gap:2rem;border-top:1px solid #5b584d;padding-top:2rem;min-height:11rem}
+.panel h3{font:800 clamp(1.8rem,3.4vw,3rem)/1 var(--display);letter-spacing:-.04em;color:var(--lime)}
+.panel p{color:#cfcabb;margin-top:.8rem;max-width:44ch}
+.panel .tags span{border-color:var(--paper);align-self:start}
+.panel .tags{align-content:start}
+@media(max-width:700px){.panel{grid-template-columns:1fr}.map{aspect-ratio:auto;min-height:420px}.nd{padding:.7rem .9rem}}
+
+/* journey */
+.jr .wrap{display:grid;grid-template-columns:5fr 7fr;gap:var(--s4)}
+.jr .stick{position:sticky;top:6rem;align-self:start}
+.jr h2 span{color:var(--orange)}
+.log{border-left:2px solid var(--ink);padding:0 0 3.5rem 2rem;position:relative}
+.log::before{content:'';position:absolute;left:-9px;top:.25rem;width:16px;height:16px;background:var(--lime);border:2px solid var(--ink);rotate:45deg}
+.log .mono{color:var(--cobalt)}
+.log h3{font:800 clamp(1.4rem,2.6vw,2.2rem)/1.1 var(--display);letter-spacing:-.03em;margin:.4rem 0 .7rem}
+.log p{max-width:52ch;color:#3b3930}
+@media(max-width:900px){.jr .wrap{grid-template-columns:1fr}.jr .stick{position:static}}
+
+/* contact */
+.ct{background:var(--cobalt);color:var(--paper)}
+.ct .lbl{color:#c4caff}.ct .lbl b{color:var(--lime)}
+.ct h2 em{font:italic 400 1em var(--serif);color:var(--lime);text-transform:none;letter-spacing:-.02em}
+.mail{display:inline-flex;align-items:center;gap:1rem;margin-top:var(--s4);font:800 clamp(1.3rem,4.4vw,4rem)/1.1 var(--display);letter-spacing:-.04em;text-decoration:none;border-bottom:4px solid var(--lime);padding-bottom:.3rem;word-break:break-all;transition:color .25s,gap .4s var(--ease)}
+.mail:hover{color:var(--lime);gap:2rem}
+.cgrid{display:grid;grid-template-columns:1fr 1.1fr;gap:var(--s4);margin-top:var(--s4)}
+.cl{display:flex;flex-direction:column;gap:.6rem;align-items:flex-start}
+.cl a,.cl button{font:700 1.15rem var(--display);color:var(--paper);background:none;border:0;border-bottom:1.5px solid transparent;text-decoration:none;cursor:pointer;padding:.2rem 0;transition:border-color .2s,color .2s}
+.cl a:hover,.cl button:hover{color:var(--lime);border-color:var(--lime)}
+.cl p{color:#c4caff;max-width:40ch;margin-bottom:1rem}
+form{display:grid;gap:1.1rem}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.fg{position:relative}
+.fg input,.fg textarea{width:100%;background:transparent;border:0;border-bottom:2px solid rgba(240,235,225,.45);padding:1.5rem 0 .5rem;color:var(--paper);font:500 1rem var(--display);outline:0;transition:border-color .25s;resize:vertical;border-radius:0}
+.fg textarea{min-height:120px}
+.fg label{position:absolute;left:0;top:1.1rem;font:500 .75rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#c4caff;pointer-events:none;transition:.25s var(--ease)}
+.fg input:focus,.fg textarea:focus{border-color:var(--lime)}
+.fg input:focus+label,.fg input:not(:placeholder-shown)+label,.fg textarea:focus+label,.fg textarea:not(:placeholder-shown)+label{top:0;font-size:.62rem;color:var(--lime)}
+form .btn{background:var(--lime);color:var(--ink);border-color:var(--lime);justify-self:start}
+form .btn:hover{background:var(--paper);border-color:var(--paper)}
+footer{padding:2rem var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;background:var(--cobalt);color:#c4caff;border-top:1px solid rgba(240,235,225,.25)}
+@media(max-width:900px){.cgrid,.fr{grid-template-columns:1fr}}
+
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+ .js .rv{opacity:1;transform:none;clip-path:none}.js .w{opacity:1}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="top">
+  <a href="#home" class="logo" aria-label="Harish Ramasamy, home">HR®</a>
+  <span class="sect mono" id="sect" aria-hidden="true">00 / Specimen</span>
+  <button class="mbtn mono" id="mbtn" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<nav id="menu" aria-label="Main" inert>
+  <a class="big" style="--i:0" href="#about"><small>01</small>Identity</a>
+  <a class="big" style="--i:1" href="#work"><small>02</small>Selected work</a>
+  <a class="big" style="--i:2" href="#stack"><small>03</small>Capabilities</a>
+  <a class="big" style="--i:3" href="#journey"><small>04</small>Journey</a>
+  <a class="big" style="--i:4" href="#contact"><small>05</small>Contact</a>
+  <div class="mfoot mono"><a href="https://github.com/Harish-ramasamy" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.linkedin.com/in/harish-ramasamy-ba70b0261/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+</nav>
+
+<main id="main">
+<section id="home" data-name="00 / Specimen">
+  <span class="reg" style="left:var(--pad);top:5rem"></span><span class="reg" style="right:var(--pad);top:5rem"></span>
+  <div class="stage" id="stage">
+    <h1 class="n n1"><span>Harish</span></h1>
+    <div class="portrait" id="portrait">
+      <div class="frame"><img src="asset/harish.jpg" width="1200" height="1297" alt="Portrait of Harish Ramasamy, a full-stack software engineer, wearing a white shirt against a pale blue wall" fetchpriority="high" decoding="async"></div>
+      <button class="pin" style="--x:29%;--y:16%" aria-label="Interface: Angular, React, TypeScript, RxJS, NgRx"><i></i><span>Interface<small>Angular · React · TS</small></span></button>
+      <button class="pin" style="--x:66%;--y:41%" aria-label="Server: Node.js, Express, REST APIs, JWT"><i></i><span>Server<small>Node · Express · REST</small></span></button>
+      <button class="pin" style="--x:48%;--y:80%" aria-label="Data: MySQL and MongoDB"><i></i><span>Data<small>MySQL · MongoDB</small></span></button>
+      <div class="stamp" aria-hidden="true">GOMU GOMU NO—</div>
+    </div>
+    <div class="n n2" aria-hidden="true"><span>Ramasamy</span></div>
+    <span class="sr">Ramasamy</span>
+  </div>
+  <div class="hfoot">
+    <p><span class="mono kick" style="display:block;margin-bottom:.7rem">Full-stack software engineer · Chennai</span>I build the interface <em>and</em> the API behind it — Angular and React on Node, Express, MySQL and MongoDB — for software that has to keep working.</p>
+    <div class="acts"><a href="#work" class="btn mag">Enter the lab ↓</a><a href="#contact" class="btn ghost mag">Say hello</a></div>
+    <div class="hint mono"><i></i>Tap the orange pins</div>
+  </div>
+</section>
+
+<div class="mq" aria-hidden="true"><div id="mq"></div></div>
+
+<section id="about" data-name="01 / Identity">
+  <div class="wrap">
+    <p class="lbl mono rv"><b>01</b> Identity</p>
+    <div class="about">
+      <p class="lead" id="lead">Three years inside a large enterprise Angular codebase taught me how software survives real use. Now I take features from the interface to the database myself, so nothing waits on a hand-off.</p>
+      <figure class="eyes rv clip" role="img" aria-label="Close crop of Harish Ramasamy's eyes"><figcaption class="mono">Fig. 02 — the one reading your code review</figcaption></figure>
+      <div class="facts rv left">
+        <dl class="mono" style="letter-spacing:.08em">
+          <dt>Role</dt><dd>Full-Stack Software Engineer, BlindMatrix Pvt. Ltd.</dd>
+          <dt>Base</dt><dd>Chennai, India · 13.08°N 80.27°E</dd>
+          <dt>Daily stack</dt><dd>Angular, TypeScript, RxJS, NgRx, Node.js, Express, MySQL, MongoDB, React</dd>
+          <dt>Off-hours</dt><dd>One Piece, cooking, side projects</dd>
+        </dl>
+        <div class="acts"><a class="btn mag" href="asset/Harish%20-%20Angular%20Developer.pdf">Resume ↓</a><a class="btn ghost mag" href="https://github.com/Harish-ramasamy" target="_blank" rel="noopener">GitHub ↗</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ruler" aria-hidden="true"></div>
+
+<section id="work" class="work" data-name="02 / Work">
+  <div class="wrap">
+    <p class="lbl mono rv"><b>02</b> Selected work</p>
+    <h2 class="rv">Evidence,<br><span class="serif" style="text-transform:none">not adjectives.</span></h2>
+    <div class="list" id="list">
+      <article class="row open">
+        <button class="rh" aria-expanded="true" aria-controls="c1" id="h1"><span class="mono">01</span><span class="ttl">BlindMatrix<small>Enterprise window-blinds management platform</small></span><span class="mono yr">In production</span><span class="pl" aria-hidden="true">+</span></button>
+        <div class="rp" id="c1" role="region" aria-labelledby="h1"><div><div class="case">
+          <div><h4 class="mono">Problem</h4><p>Blinds businesses run customers, appointments, inventory, quotations, installation, accounting and reporting. They need one system for the whole lifecycle.</p></div>
+          <div><h4 class="mono">My part</h4><p>Built and maintained scalable Angular apps and REST APIs, optimised MySQL queries, implemented secure authentication, integrated third-party services and fixed production issues in an Agile team.</p></div>
+          <div><h4 class="mono">Stack</h4><div class="tags"><span>Angular</span><span>Bootstrap</span><span>Node.js</span><span>Express</span><span>Laravel</span><span>MySQL</span><span>REST</span></div></div>
+          <div><h4 class="mono">Status</h4><p>Live at my day job. Source is private; the walkthrough lives in an interview.</p></div>
+        </div></div></div>
+      </article>
+      <article class="row">
+        <button class="rh" aria-expanded="false" aria-controls="c2" id="h2"><span class="mono">02</span><span class="ttl">DevVault<small>A second brain for developers</small></span><span class="mono yr">In development</span><span class="pl" aria-hidden="true">+</span></button>
+        <div class="rp" id="c2" role="region" aria-labelledby="h2"><div><div class="case">
+          <div><h4 class="mono">Problem</h4><p>Notes, code snippets, bookmarks and project docs end up scattered across tools. DevVault keeps them in one searchable place.</p></div>
+          <div><h4 class="mono">My part</h4><p>Designed and built it full stack: JWT auth with refresh tokens, Markdown support, advanced search, reusable component architecture, responsive dashboards and REST APIs following Clean Architecture.</p></div>
+          <div><h4 class="mono">Stack</h4><div class="tags"><span>Angular 20</span><span>Node.js</span><span>Express</span><span>MongoDB Atlas</span><span>Tailwind</span><span>RxJS</span><span>Angular Material</span><span>JWT</span></div></div>
+          <div><h4 class="mono">Status</h4><p>Under active development.</p><a href="https://github.com/Harish-ramasamy" target="_blank" rel="noopener">GitHub profile ↗</a></div>
+        </div></div></div>
+      </article>
+      <article class="row">
+        <button class="rh" aria-expanded="false" aria-controls="c3" id="h3"><span class="mono">03</span><span class="ttl">Notification System<small>Scheduled break reminders for the desktop</small></span><span class="mono yr">Built</span><span class="pl" aria-hidden="true">+</span></button>
+        <div class="rp" id="c3" role="region" aria-labelledby="h3"><div><div class="case">
+          <div><h4 class="mono">Problem</h4><p>Long focus sessions with no breaks.</p></div>
+          <div><h4 class="mono">My part</h4><p>A desktop productivity tool that fires scheduled reminders. Kept lean on purpose: vanilla JavaScript and Node.js, no framework overhead.</p></div>
+          <div><h4 class="mono">Stack</h4><div class="tags"><span>JavaScript</span><span>Node.js</span></div></div>
+          <div><h4 class="mono">Status</h4><p>Built, source on GitHub.</p><a href="https://github.com/Harish-ramasamy/Notification-System" target="_blank" rel="noopener">View repository ↗</a></div>
+        </div></div></div>
+      </article>
+      <article class="row">
+        <button class="rh" aria-expanded="false" aria-controls="c4" id="h4"><span class="mono">04</span><span class="ttl">Client websites<small>A wedding DJ service and a post-production studio</small></span><span class="mono yr">Delivered</span><span class="pl" aria-hidden="true">+</span></button>
+        <div class="rp" id="c4" role="region" aria-labelledby="h4"><div><div class="case">
+          <div><h4 class="mono">Problem</h4><p>Two real clients, a South Asian wedding DJ service and a Chennai post-production studio, had outdated web presences.</p></div>
+          <div><h4 class="mono">My part</h4><p>Full redesigns from scratch: branding, layout, mobile responsiveness, booking forms and portfolio grids.</p></div>
+          <div><h4 class="mono">Stack</h4><div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Responsive</span></div></div>
+          <div><h4 class="mono">Status</h4><p>Shipped to production for both clients.</p></div>
+        </div></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="stack" class="cap dk" data-name="03 / Capabilities">
+  <div class="wrap">
+    <p class="lbl mono rv"><b>03</b> Capabilities</p>
+    <h2 class="rv">One engineer,<br><span class="serif" style="text-transform:none;color:var(--lime)">whole path.</span></h2>
+    <div class="map rv" id="map">
+      <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <line class="ln" data-k="ui" x1="50" y1="50" x2="16" y2="22"/><line class="ln" data-k="api" x1="50" y1="50" x2="84" y2="22"/>
+        <line class="ln" data-k="data" x1="50" y1="50" x2="84" y2="78"/><line class="ln" data-k="ship" x1="50" y1="50" x2="16" y2="78"/>
+        <line class="ln dash" data-k="ui api" x1="16" y1="22" x2="84" y2="22"/><line class="ln dash" data-k="api data" x1="84" y1="22" x2="84" y2="78"/>
+        <line class="ln dash" data-k="data ship" x1="84" y1="78" x2="16" y2="78"/><line class="ln dash" data-k="ship ui" x1="16" y1="78" x2="16" y2="22"/>
+      </svg>
+      <div class="nd core" style="--x:50%;--y:50%">Product<small>the point</small></div>
+      <button class="nd" data-k="ui" style="--x:16%;--y:22%">Interface<small>01</small></button>
+      <button class="nd" data-k="api" style="--x:84%;--y:22%">API<small>02</small></button>
+      <button class="nd" data-k="data" style="--x:84%;--y:78%">Data<small>03</small></button>
+      <button class="nd" data-k="ship" style="--x:16%;--y:78%">Delivery<small>04</small></button>
+    </div>
+    <div class="panel" aria-live="polite"><div><h3 id="pt">Pick a node.</h3><p id="pd">Every layer connects to the next. Select one to see how I work in it.</p></div><div class="tags" id="pg"></div></div>
+  </div>
+</section>
+
+<section id="journey" class="jr" data-name="04 / Journey">
+  <div class="wrap">
+    <div class="stick"><p class="lbl mono rv"><b>04</b> Journey</p><h2 class="rv">Lab<br><span class="serif" style="text-transform:none">notebook.</span></h2></div>
+    <div>
+      <div class="log rv right"><span class="mono">Log 01 · Now</span><h3>Full-Stack Software Engineer, BlindMatrix</h3><p>Building and maintaining enterprise apps in a large production Angular codebase: ng-select, ngx-bootstrap, Syncfusion and a custom i18n pipeline on ngx-translate. Plus Node.js APIs and MySQL behind them.</p></div>
+      <div class="log rv right" style="--d:.1s"><span class="mono">Log 02</span><h3>Widening to the whole stack</h3><p>Picked up React, Node.js, Express and MongoDB, and built DevVault and the Notification System to own features from UI to database.</p></div>
+      <div class="log rv right" style="--d:.2s"><span class="mono">Log 03</span><h3>Client work on the side</h3><p>Redesigned and shipped websites for a wedding DJ service and a Chennai post-production studio.</p></div>
+      <div class="log rv right" style="--d:.3s;padding-bottom:0"><span class="mono">Log 04 · Next</span><h3>Your team, maybe</h3><p>Looking for a full-time role with real ownership. Freelance projects welcome too.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="ct dk" data-name="05 / Contact">
+  <div class="wrap">
+    <p class="lbl mono rv"><b>05</b> Contact</p>
+    <h2 class="rv">Let's build something <em>that ships.</em></h2>
+    <a class="mail rv" href="mailto:harishramasamy57@gmail.com">harishramasamy57@gmail.com <span aria-hidden="true">↗</span></a>
+    <div class="cgrid">
+      <div class="cl rv">
+        <p>Full-time roles, freelance projects, or a good conversation about code. I reply within 24 hours.</p>
+        <button id="copy" type="button">Copy email address</button><span class="sr" aria-live="polite" id="cs"></span>
+        <a href="https://github.com/Harish-ramasamy" target="_blank" rel="noopener">GitHub ↗</a>
+        <a href="https://www.linkedin.com/in/harish-ramasamy-ba70b0261/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="asset/Harish%20-%20Angular%20Developer.pdf">Resume (PDF) ↓</a>
+      </div>
+      <form class="rv" id="form">
+        <div class="fr"><div class="fg"><input id="fn" name="name" placeholder=" " required autocomplete="name"><label for="fn">Name</label></div>
+        <div class="fg"><input id="fe" name="email" type="email" placeholder=" " required autocomplete="email"><label for="fe">Email</label></div></div>
+        <div class="fg"><input id="fs" name="subject" placeholder=" " required><label for="fs">Subject</label></div>
+        <div class="fg"><textarea id="fm" name="message" placeholder=" " required></textarea><label for="fm">Message</label></div>
+        <button class="btn mag" id="sb" type="submit">Send message →</button>
+        <p class="sr" aria-live="polite" id="fstat"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="mono"><span>© 2026 Harish Ramasamy · Chennai</span><span>psst — try typing “luffy”</span></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"></script>
+<script>
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches,FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(window.emailjs)emailjs.init("ZZSLuS4F78WM_Qat9");
+
+/* marquee */
+const T=['Angular','React','Node.js','TypeScript','RxJS','NgRx','Express','MySQL','MongoDB','REST','Clean Architecture'];
+$('#mq').innerHTML=[...T,...T].map(t=>`<span>${t} ✱</span>`).join('');
+
+/* menu */
+const mb=$('#mbtn'),mn=$('#menu');
+function menu(o){mn.classList.toggle('open',o);mn.inert=!o;mb.setAttribute('aria-expanded',o);mb.textContent=o?'Close':'Menu';document.body.style.overflow=o?'hidden':'';if(o)setTimeout(()=>$('a',mn).focus(),500)}
+mb.onclick=()=>menu(!mn.classList.contains('open'));
+$$('a',mn).forEach(a=>a.addEventListener('click',()=>menu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&mn.classList.contains('open')){menu(false);mb.focus()}});
+
+/* reveal + section label */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+const sl=$('#sect');
+const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)sl.textContent=e.target.dataset.name}),{rootMargin:'-45% 0px -50% 0px'});
+$$('section[data-name]').forEach(s=>so.observe(s));
+
+/* scroll-read highlight (normal scroll, no hijack) */
+const lead=$('#lead');
+lead.innerHTML=lead.textContent.trim().split(/\s+/).map(w=>`<span class="w${/^(survives|interface|database)/.test(w)?' k':''}">${w}</span>`).join(' ');
+const ws=$$('.w',lead);let tick=false;
+function hl(){tick=false;const r=lead.getBoundingClientRect(),p=Math.min(1,Math.max(0,(innerHeight*.85-r.top)/(r.height+innerHeight*.25)));const n=Math.round(p*ws.length);ws.forEach((w,i)=>w.classList.toggle('on',i<n))}
+addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(hl)}},{passive:true});hl();
+
+/* hero depth (fine pointers only) */
+const st=$('#stage'),pt=$('#portrait');
+if(FINE&&!RM)addEventListener('mousemove',e=>{if(scrollY>innerHeight)return;const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
+ st.style.setProperty('--mx',x.toFixed(3));st.style.setProperty('--my',y.toFixed(3));
+ pt.style.transform=`perspective(900px) rotateY(${x*7}deg) rotateX(${y*-5}deg)`},{passive:true});
+
+/* pins: tap to toggle */
+const pins=$$('.pin');
+pins.forEach(p=>p.addEventListener('click',e=>{e.stopPropagation();const o=p.classList.contains('open');pins.forEach(x=>x.classList.remove('open'));if(!o)p.classList.add('open')}));
+addEventListener('click',()=>pins.forEach(x=>x.classList.remove('open')));
+
+/* magnetic buttons (fine pointers) */
+if(FINE&&!RM)$$('.mag').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.3}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')});
+
+/* work accordion */
+$$('.rh').forEach(h=>h.addEventListener('click',()=>{const row=h.parentElement,o=row.classList.contains('open');
+ $$('.row').forEach(r=>{r.classList.remove('open');$('.rh',r).setAttribute('aria-expanded','false')});
+ if(!o){row.classList.add('open');h.setAttribute('aria-expanded','true')}}));
+
+/* capability map */
+const C={
+ ui:['Interface','Angular is my daily driver: a large enterprise codebase, RxJS and NgRx state, TypeScript throughout. React for newer builds.',['Angular 14+','React','TypeScript','RxJS','NgRx','Bootstrap','Tailwind','Angular Material']],
+ api:['API','Node.js and Express services behind the UI, with secure authentication (JWT, refresh tokens) and REST contracts the front end can rely on.',['Node.js','Express','REST','JWT','Laravel','Clean Architecture']],
+ data:['Data','Relational and document stores chosen for the job: MySQL with optimised queries at work, MongoDB Atlas in DevVault.',['MySQL','MongoDB','MongoDB Atlas','Query optimisation']],
+ ship:['Delivery','Agile team workflow, third-party integrations, production fixes, and AI-assisted development to move faster without dropping quality.',['Git','GitHub','Postman','phpMyAdmin','VS Code','Claude Code']]};
+const nds=$$('.nd[data-k]'),lns=$$('.ln');
+function pick(k){nds.forEach(n=>n.classList.toggle('act',n.dataset.k===k));lns.forEach(l=>l.classList.toggle('act',l.dataset.k.split(' ').includes(k)));
+ $('#pt').textContent=C[k][0];$('#pd').textContent=C[k][1];$('#pg').innerHTML=C[k][2].map(t=>`<span>${t}</span>`).join('')}
+nds.forEach(n=>{['click','mouseenter','focus'].forEach(ev=>n.addEventListener(ev,()=>pick(n.dataset.k)))});
+
+/* copy email */
+$('#copy').onclick=async()=>{const b=$('#copy');try{await navigator.clipboard.writeText('harishramasamy57@gmail.com');b.textContent='Copied ✓';$('#cs').textContent='Email copied'}catch{b.textContent='Press Ctrl+C on the address above'}setTimeout(()=>b.textContent='Copy email address',2500)};
+
+/* easter egg: type "luffy" */
+let buf='';addEventListener('keydown',e=>{if(/INPUT|TEXTAREA/.test(e.target.tagName))return;buf=(buf+e.key.toLowerCase()).slice(-5);
+ if(buf==='luffy'){pt.classList.remove('gum');void pt.offsetWidth;pt.classList.add('gum');scrollTo({top:0,behavior:RM?'auto':'smooth'});setTimeout(()=>pt.classList.remove('gum'),1500)}});
+
+/* contact form (EmailJS) */
+$('#form').addEventListener('submit',e=>{e.preventDefault();const f=e.target,b=$('#sb'),s=$('#fstat');b.textContent='Sending…';b.disabled=true;
+ emailjs.send("service_0oyp4lg","template_zfmbz58",{name:f.name.value,email:f.email.value,subject:f.subject.value,message:f.message.value})
+ .then(()=>{b.textContent='Sent ✓';s.textContent='Message sent';f.reset();setTimeout(()=>{b.textContent='Send message →';b.disabled=false},3000)})
+ .catch(()=>{b.textContent='Failed — try again';s.textContent='Message failed to send';b.disabled=false})});
+</script>
+</body>
+</html>
